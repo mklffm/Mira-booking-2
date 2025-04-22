@@ -1,81 +1,74 @@
-# Mira Booking - Travel Agency Website
+# Mira Booking
 
-A modern booking website for Mira Booking travel agency built with Next.js and Tailwind CSS.
+A modern visa application and booking platform built with Next.js, React, and Tailwind CSS.
 
 ## Features
 
-- Responsive design for all devices
-- Interactive search and booking functionality
-- Destination listings with filtering and sorting
-- Travel packages and deals showcase
-- Modern UI with smooth animations
-
-## Prerequisites
-
-- Node.js 18.0 or later
-- npm or yarn package manager
+- Multilingual support (English, French, Arabic)
+- Responsive design with beautiful animations
+- Visa application form with B2C and B2B support
+- RTL support for Arabic language
+- Support for multiple visa types and destinations
 
 ## Getting Started
 
 1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-```bash
-git clone <repository-url>
-cd mira-booking
-```
+## Technologies Used
 
-2. Install dependencies
-
-```bash
-npm install
-# or
-yarn install
-```
-
-3. Run the development server
-
-```bash
-npm run dev
-# or
-yarn dev
-```
-
-4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Next.js 13+ (App Router)
+- React 18
+- Tailwind CSS
+- TypeScript
 
 ## Project Structure
 
-- `src/app/` - Next.js app router pages
-- `src/components/` - Reusable UI components
-- `public/` - Static assets like images
-- `tailwind.config.js` - Tailwind CSS configuration
+- `/src/app` - Next.js App Router pages
+- `/src/components` - Reusable UI components
+- `/public` - Static assets
 
 ## Key Pages
 
-- Home page (`/`) - Main landing page with search and featured destinations
-- Destinations (`/destinations`) - Browse all travel destinations
-- Packages (`/packages`) - View vacation packages and deals
-- Hotels (`/hotels`) - Search and book hotels
-- Flights (`/flights`) - Search and book flights
+- Home (`/`) - Main landing page with visa application form
+- Visa Application (`/demande-visa`) - Dedicated visa application page
+- Services (`/services`) - List of available services
+- About (`/about`) - Information about the company
+- Contact (`/contact`) - Contact information and form
 
-## Customization
+## Deployment to Cloudflare Pages
 
-- Edit `tailwind.config.js` to customize colors, fonts, and other theme settings
-- Modify components in `src/components/` to change UI elements
-- Update or add pages in `src/app/` to create new routes
+To deploy this project to Cloudflare Pages:
 
-## Deployment
+1. Push your code to a GitHub repository
+2. Login to the Cloudflare Dashboard
+3. Navigate to Pages > Create a project
+4. Connect your GitHub account and select this repository
+5. Configure the build settings:
+   - Framework preset: Next.js
+   - Build command: `npm run build`
+   - Build output directory: `.next`
+   - Environment variables:
+     - `NODE_VERSION`: `16.x`
+6. Deploy your site
 
-This Next.js application can be easily deployed on platforms like Vercel:
+After deployment, your site will be available at a *.pages.dev domain.
 
-```bash
-npm run build
-# or
-yarn build
-```
+## Contributing
+
+Contributions, issues, and feature requests are welcome!
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+MIT
 
 ## Acknowledgements
 

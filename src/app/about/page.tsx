@@ -13,7 +13,7 @@ const translations = {
     heroSubtitle: 'Simplifying visa processing since 2018',
     
     section1Title: 'Our Mission',
-    section1Text: 'At Mira Booking, we're dedicated to making visa processing accessible, transparent, and hassle-free for travelers worldwide. Our mission is to remove barriers to global mobility through technology and expert service.',
+    section1Text: 'At Mira Booking, we\'re dedicated to making visa processing accessible, transparent, and hassle-free for travelers worldwide. Our mission is to remove barriers to global mobility through technology and expert service.',
     section1Text2: 'We combine cutting-edge technology with expert knowledge to guide you through every step of your visa journey, ensuring a smooth and successful application process.',
     statLabel: 'Successful Applications',
     
@@ -140,6 +140,9 @@ export default function AboutPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const isRTL = language === 'ar';
   
+  // Get translations based on language with proper type casting
+  const t = translations[language as keyof typeof translations] || translations.fr;
+  
   // Form state
   const [formData, setFormData] = useState({
     firstName: '',
@@ -151,7 +154,7 @@ export default function AboutPage() {
   });
 
   // Handle form input changes
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -183,7 +186,7 @@ export default function AboutPage() {
 
   // Update document title based on language
   useEffect(() => {
-    document.title = translations[language].pageTitle;
+    document.title = t.pageTitle;
     document.documentElement.lang = language;
     
     // Set the direction attribute based on language
@@ -192,17 +195,17 @@ export default function AboutPage() {
     // Add meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', translations[language].metaDescription);
+      metaDescription.setAttribute('content', t.metaDescription);
     } else {
       const newMetaDescription = document.createElement('meta');
       newMetaDescription.name = 'description';
-      newMetaDescription.content = translations[language].metaDescription;
+      newMetaDescription.content = t.metaDescription;
       document.head.appendChild(newMetaDescription);
     }
     
     // Save language preference to localStorage
     localStorage.setItem('preferredLanguage', language);
-  }, [language, isRTL]);
+  }, [language, isRTL, t]);
 
   return (
     <main className={`flex min-h-screen flex-col ${isRTL ? 'rtl' : 'ltr'}`}>
@@ -225,13 +228,13 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center max-w-3xl mx-auto animate-fade-in">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              {translations[language].heroTitle}
+              {t.heroTitle}
             </h1>
             <p 
               className="text-xl text-white/80 mb-10 animate-slide-up" 
               style={{ animationDelay: '0.3s' }}
             >
-              {translations[language].heroSubtitle}
+              {t.heroSubtitle}
             </p>
           </div>
         </div>
@@ -256,13 +259,13 @@ export default function AboutPage() {
               style={{ animationDelay: '0.2s' }}
             >
               <h2 className="text-3xl font-bold mb-6 text-gray-800">
-                {translations[language].section1Title}
+                {t.section1Title}
               </h2>
               <p className="text-lg text-gray-600 mb-8">
-                {translations[language].section1Text}
+                {t.section1Text}
               </p>
               <p className="text-lg text-gray-600">
-                {translations[language].section1Text2}
+                {t.section1Text2}
               </p>
             </div>
             
@@ -282,7 +285,7 @@ export default function AboutPage() {
               
               {/* Floating stats */}
               <div className="absolute -bottom-5 -right-5 bg-white rounded-lg shadow-xl p-4 animate-float-shadow">
-                <p className="text-sm text-gray-600">{translations[language].statLabel}</p>
+                <p className="text-sm text-gray-600">{t.statLabel}</p>
                 <p className="text-2xl font-bold text-blue-600 animate-pulse-slow">10,000+</p>
               </div>
             </div>
@@ -306,7 +309,7 @@ export default function AboutPage() {
         
         <div className="container mx-auto px-4 relative z-10">
           <h2 className="text-3xl font-bold mb-16 text-center text-gray-800 animate-fade-in">
-            {translations[language].section3Title}
+            {t.section3Title}
           </h2>
           
           <div className={`grid md:grid-cols-3 gap-8 ${isRTL ? 'md:rtl' : ''} team-stagger`}>
@@ -318,10 +321,10 @@ export default function AboutPage() {
                 <FaUsers className="text-2xl text-blue-600" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-gray-800">
-                {translations[language].advantage1Title}
+                {t.advantage1Title}
               </h3>
               <p className="text-gray-600">
-                {translations[language].advantage1Text}
+                {t.advantage1Text}
               </p>
             </div>
             
@@ -333,10 +336,10 @@ export default function AboutPage() {
                 <FaGlobe className="text-2xl text-green-600" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-gray-800">
-                {translations[language].advantage2Title}
+                {t.advantage2Title}
               </h3>
               <p className="text-gray-600">
-                {translations[language].advantage2Text}
+                {t.advantage2Text}
               </p>
             </div>
             
@@ -348,10 +351,10 @@ export default function AboutPage() {
                 <FaCheckCircle className="text-2xl text-purple-600" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-gray-800">
-                {translations[language].advantage3Title}
+                {t.advantage3Title}
               </h3>
               <p className="text-gray-600">
-                {translations[language].advantage3Text}
+                {t.advantage3Text}
               </p>
             </div>
           </div>
@@ -374,21 +377,21 @@ export default function AboutPage() {
         
         <div className="container mx-auto px-4 relative z-10">
           <h2 className="text-3xl font-bold mb-16 text-center animate-fade-in">
-            {translations[language].section4Title}
+            {t.section4Title}
           </h2>
           
           <div className={`grid grid-cols-2 md:grid-cols-4 gap-6 ${isRTL ? 'md:rtl' : ''} values-stagger`}>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center hover:bg-white/20 transition-all duration-500 transform hover:scale-105 animate-slide-up">
-              <h3 className="text-xl font-bold">{translations[language].value1}</h3>
+              <h3 className="text-xl font-bold">{t.value1}</h3>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center hover:bg-white/20 transition-all duration-500 transform hover:scale-105 animate-slide-up">
-              <h3 className="text-xl font-bold">{translations[language].value2}</h3>
+              <h3 className="text-xl font-bold">{t.value2}</h3>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center hover:bg-white/20 transition-all duration-500 transform hover:scale-105 animate-slide-up">
-              <h3 className="text-xl font-bold">{translations[language].value3}</h3>
+              <h3 className="text-xl font-bold">{t.value3}</h3>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center hover:bg-white/20 transition-all duration-500 transform hover:scale-105 animate-slide-up">
-              <h3 className="text-xl font-bold">{translations[language].value4}</h3>
+              <h3 className="text-xl font-bold">{t.value4}</h3>
             </div>
           </div>
         </div>
@@ -402,7 +405,7 @@ export default function AboutPage() {
         
         <div className="container mx-auto px-4 relative z-10">
           <h2 className="text-3xl font-bold mb-16 text-center text-gray-800 animate-fade-in">
-            {translations[language].teamTitle}
+            {t.teamTitle}
           </h2>
           
           <div className={`grid md:grid-cols-3 gap-8 ${isRTL ? 'md:rtl' : ''} team-stagger`}>
@@ -410,16 +413,16 @@ export default function AboutPage() {
               <div className="relative w-48 h-48 rounded-full overflow-hidden mx-auto mb-4 border-4 border-blue-100 shadow-xl transform transition-all duration-500 hover:scale-105 hover:shadow-blue-glow">
                 <Image 
                   src="/images/team-1.jpg" 
-                  alt={translations[language].teamMember1Name}
+                  alt={t.teamMember1Name}
                   fill
                   className="object-cover"
                 />
               </div>
               <h3 className="text-xl font-bold text-gray-800">
-                {translations[language].teamMember1Name}
+                {t.teamMember1Name}
               </h3>
               <p className="text-gray-600">
-                {translations[language].teamMember1Position}
+                {t.teamMember1Position}
               </p>
             </div>
             
@@ -427,16 +430,16 @@ export default function AboutPage() {
               <div className="relative w-48 h-48 rounded-full overflow-hidden mx-auto mb-4 border-4 border-green-100 shadow-xl transform transition-all duration-500 hover:scale-105 hover:shadow-green-glow">
                 <Image 
                   src="/images/team-2.jpg" 
-                  alt={translations[language].teamMember2Name}
+                  alt={t.teamMember2Name}
                   fill
                   className="object-cover"
                 />
               </div>
               <h3 className="text-xl font-bold text-gray-800">
-                {translations[language].teamMember2Name}
+                {t.teamMember2Name}
               </h3>
               <p className="text-gray-600">
-                {translations[language].teamMember2Position}
+                {t.teamMember2Position}
               </p>
             </div>
             
@@ -444,16 +447,16 @@ export default function AboutPage() {
               <div className="relative w-48 h-48 rounded-full overflow-hidden mx-auto mb-4 border-4 border-purple-100 shadow-xl transform transition-all duration-500 hover:scale-105 hover:shadow-purple-glow">
                 <Image 
                   src="/images/team-3.jpg" 
-                  alt={translations[language].teamMember3Name}
+                  alt={t.teamMember3Name}
                   fill
                   className="object-cover"
                 />
               </div>
               <h3 className="text-xl font-bold text-gray-800">
-                {translations[language].teamMember3Name}
+                {t.teamMember3Name}
               </h3>
               <p className="text-gray-600">
-                {translations[language].teamMember3Position}
+                {t.teamMember3Position}
               </p>
             </div>
           </div>
@@ -618,13 +621,13 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center animate-slide-up">
             <h2 className="text-3xl font-bold mb-6 text-gray-800">
-              {translations[language].ctaTitle}
+              {t.ctaTitle}
             </h2>
             <p className="text-lg text-gray-600 mb-8">
-              {translations[language].ctaText}
+              {t.ctaText}
             </p>
             <Link href="/" className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-blue-600 to-green-400 text-white font-medium rounded-full hover:from-blue-700 hover:to-green-500 transition-all shadow-lg hover:shadow-blue-glow transform hover:-translate-y-1 animate-pulse-slow">
-              {translations[language].ctaButton}
+              {t.ctaButton}
               <FaArrowRight className={`${isRTL ? 'mr-2 rotate-180' : 'ml-2'}`} />
             </Link>
           </div>
